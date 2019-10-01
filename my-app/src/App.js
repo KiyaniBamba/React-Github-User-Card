@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const githubAPI= 'https://api.github.com/users/kiyanibamba';
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      github: [],
+    };
+  }
+
+  componentDidMount() {
+    axios.get(githubAPI)
+    .then(res => {
+    this.setState({ github: res.data})
+    })
+  }
+
+
+  return () {
+    <div>Hello, I am Foo Component</div>;
+  }
 }
-
-export default App;
