@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import UserData from './UserData.js';
+
 const githubAPI= 'https://api.github.com/users/kiyanibamba';
 
 export default class App extends Component {
@@ -15,13 +17,18 @@ export default class App extends Component {
     axios.get(githubAPI)
     .then(res => {
     this.setState({ github: res.data})
-    console.log(this.state.github)
+    console.log(this.state.github.bio)
     })
   }
+
+
 
   // Q: Why my code doesn't consider that github is defined ? 
 
   render () {
-    return <div>Hello world</div>;
-  }
+    return (
+    <div> 
+      <UserData props={this.state.github}/>
+    </div>
+  )}
 }
