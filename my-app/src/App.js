@@ -3,6 +3,11 @@ import axios from 'axios';
 
 import UsersFollowers from './UsersFollowers';
 import UserData from './UserData.js';
+import Background from './Background.js';
+import UserCard from './UserCard.js';
+import Logo from './Logo';
+import LogoContainer from './LogoContainer.js';
+
 
 const githubApiData= 'https://api.github.com/users/kiyanibamba';
 const githubApiFollowers='https://api.github.com/users/kiyanibamba/followers';
@@ -25,17 +30,18 @@ export default class App extends Component {
     this.setState({ 
       github: res1.data, 
       githubFollowers: res2.data})
-    // console.log(this.state.github.bio)
-      // console.log(this.state.githubFollowers)
     }))};
-
-  // Q: Why my code doesn't consider that github is defined ? 
 
   render () {
     return (
-    <div> 
-      <UserData props={this.state.github}/>
-      <UsersFollowers props={this.state.githubFollowers}/>
-    </div>
+    <Background>
+      <UserCard>
+        <LogoContainer>
+          <Logo/>
+        </LogoContainer>
+        <UserData props={this.state.github}/>
+        <UsersFollowers props={this.state.githubFollowers}/>
+      </UserCard>
+    </Background>
   )}
 }
